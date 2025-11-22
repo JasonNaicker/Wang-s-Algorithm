@@ -2,7 +2,6 @@
 %%             ASU CSE 259 Logic in CS           %%
 %%                    Project 3                  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Jason Naicker
 
 % setting the binding priority for the logic connectives; the lower the tighter.
 :-op(700,xfy,=>).
@@ -103,13 +102,12 @@ prove(L => R) :-
 % Write your code here
 prove(L => R):-
     member(A -> B, R),
-    del(A -> B, R, NewR),
+    del(A -> B, R, NewR), % Delete implication
     nl,
     write('=\t'),
-    write([A | L] => [B | NewR]),
+    write([A | L] => [B | NewR]), % Add both A and B to head of list.
     write('\t (by arrow/right)'),
-    prove([A | L] => [B | NewR]).
-
+    prove([A | L] => [B | NewR]). % Prove statement
 
 
 % Implement all branching rules below by following Wangs algorithm
@@ -126,37 +124,38 @@ prove(L => R) :-
   member(A v B, L),
   del(A v B, L, NewL),
   nl,  
-  write('\tFirst branch: '),
+  write('\tFirst branch: '), % Start first branch
   nl,
   write('=\t'),
-  write([A | NewL] => R),
+  write([A | NewL] => R), % Replace subformulas with corresponding formula A.
   write('\t (Replace subformula /left)'),
-  prove([A | NewL] => R),
+  prove([A | NewL] => R), % Prove Statement
   nl,  
-  write('\tSecond branch: '),
+  write('\tSecond branch: '), % Start second branch
   nl,
   write('=\t'),
-  write([B | NewL] => R),
+  write([B | NewL] => R), % Replace subformulas with corresponding formula B.
   write('\t (Replace subformula /left)'),
-  prove([B | NewL] => R).
+  prove([B | NewL] => R). % Prove Statement
 
 prove(L => R) :-
   member(A ^ B, R),
   del(A ^ B, R, NewR),
   nl, 
-  write('\tFirst branch: '),
+  write('\tFirst branch: '), % Start first branch.
   nl,
   write('=\t'),
-  write(L => [A | NewR]),
+  write(L => [A | NewR]), % Replace subformulas with corresponding formula A.
   write('\t (Replace subformula /right)'),
-  prove(L => [A | NewR]),
+  prove(L => [A | NewR]), % Prove statement
   nl,
-  write('\tSecond branch: '),
+  write('\tSecond branch: '), % Start second branch
   nl,
   write('=\t'),
-  write(L => [B | NewR]),
+  write(L => [B | NewR]), % Replace subformulas with corresponding formula B.
   write('\t (Replace subformula /right)'),
-  prove(L => [B | NewR]).
+  prove(L => [B | NewR]). % Prove statement
+
 
 /*
  * Rule-5
