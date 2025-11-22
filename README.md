@@ -1,2 +1,5 @@
-# Wang-s-Algorithm
-Implementing Wang's Algorithm for CSE 259.
+## Wangs-Algorithm
+Implementing Wangs Algorithm for CSE 259.
+
+# Contributions:
+*Jason Naicker- Implemented both part 3 and part 4 for wang's algorithm to complete the program.
